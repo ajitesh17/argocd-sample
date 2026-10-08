@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-sample
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  source:
+    path: argocd/nginx
+    repoURL: https://github.com/ajitesh17/argocd-sample.git
+    targetRevision: HEAD
+  sources: []
+  project: argocd-sample
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+      enabled: true
